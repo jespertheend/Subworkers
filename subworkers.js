@@ -111,11 +111,12 @@
 
   /* Hijack Worker */
   var oldWorker = Worker;
-  Worker = function(path, options){
+  Worker = function(url, options){
     if (this.constructor !== Worker){
       throw new TypeError("Failed to construct 'Worker': Please use the 'new' operator, this DOM object constructor cannot be called as a function.");
     }
 
+    var path = url.toString();
     var blobIndex = path.indexOf('blob:');
 
     if (blobIndex !== -1 && blobIndex !== 0 ) {
